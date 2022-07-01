@@ -23,6 +23,8 @@ Calc::Calc(QWidget *parent)
     connect(ui->b_plus, &QPushButton::clicked, this, &Calc::print);
     connect(ui->b_minus, &QPushButton::clicked, this, &Calc::print);
     connect(ui->b_dot, &QPushButton::clicked, this, &Calc::print);
+    connect(ui->b_dot, &QPushButton::clicked, this, &Calc::print);
+    connect(ui->b_rest, &QPushButton::clicked, this, &Calc::print);
 
     connect(ui->b_clear, &QPushButton::clicked, this, &Calc::clearAll);
     connect(ui->b_clearLast, &QPushButton::clicked, this, &Calc::clearLast);
@@ -84,6 +86,13 @@ void Calc::multiply()
     double res = QString(list[0]).toDouble() * QString(list[1]).toDouble();
     ui->l_skreen->setText(QString::number(res));
 }
+void Calc::rest()
+{
+    QString eq = ui->l_skreen->text();
+    QStringList list = eq.split(QLatin1Char('%'));
+    int res = QString(list[0]).toInt() % QString(list[1]).toInt();
+    ui->l_skreen->setText(QString::number(res));
+}
 
 void Calc::result()
 {
@@ -110,6 +119,13 @@ void Calc::result()
             divide();
             break;
         }
+        if(eq[i] == '%')
+        {
+            rest();
+            break;
+        }
     }
 }
+
+
 

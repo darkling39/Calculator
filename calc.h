@@ -26,5 +26,6 @@ private:
     void divide();
     void multiply();
     void result();
+    void rest();
 };
 #endif // CALC_H
